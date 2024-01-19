@@ -6,7 +6,7 @@ $new-dark: #383838;
 
 $new-theme-colors: (
   'dark': $new-dark,
-  'grigio': #808080,
+  'grigio': #221D23,
   'purple' :#1B174A
 );
 
@@ -15,7 +15,7 @@ $new-theme-colors: (
   transition: transform 0.3s ease;
 
   &:hover {
-      transform: scale(1.15);
+      transform: scale(1.05);
   }
 }
 
@@ -26,6 +26,21 @@ img{
 
 .logo{
   height: 50px;
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.27);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(6.6px);
+  -webkit-backdrop-filter: blur(6.6px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.bgImg{
+  background-image: url(./img/icon.png);
+  background-position: 0px;
+  background-repeat: no-repeat;
 }
 
 $theme-colors: map-merge($theme-colors, $new-theme-colors);

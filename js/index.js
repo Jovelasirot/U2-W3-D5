@@ -11,16 +11,19 @@ const generateCards = function (arrayOfProducts) {
     const newCol = document.createElement("div");
     newCol.classList.add("col", "col-12", "col-md-4", "col-lg-3");
     newCol.innerHTML = `
-        <div class="card h-100 .anima">
+        <div class="card h-100 anima">
             <img src="${product.imageUrl}" alt="graphic card">
             <div class="card-body d-flex flex-column">
                 <h5 class="card-title">${product.name}</h5>
                 <p class="card-text flex-grow-1">${product.description}</p>
                 <p class="card-text "> ${product.price} €</p>
-                <p class="card-text text-end ">from: ${product.brand}</p>
+                <div class="d-flex justify-content-between ">
+                <a href="./back-office.html?productId=${product._id}" class="btn btn-muted"><i class="bi bi-pencil-square"></i></a>
+                <p class="card-text">Brand: ${product.brand}</p>
+                </div>
                 <a href="#" class="btn btn-dark">Add to cart</a>
-                <a href="./details.html?productId=${product._id}" class="btn btn-success mt-2"><i class="bi bi-caret-right"></i></i>
-                 VAI AI DETTAGLI 
+                <a href="./details.html?productId=${product._id}" class="btn btn-success mt-2">
+                 Show more
                 </a>
             </div>
         </div>

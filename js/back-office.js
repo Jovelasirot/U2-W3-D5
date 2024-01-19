@@ -35,7 +35,6 @@ if (productId) {
       brandInput.value = product.brand;
       imageInput.value = product.imageUrl;
       priceInput.value = product.price;
-      alert("you are in the edit section");
     })
     .catch((err) => {
       console.log(err);
@@ -45,8 +44,15 @@ if (productId) {
 }
 
 // post
-form.addEventListener("submit", function (e) {
+form.addEventListener("submit", (e) => {
   e.preventDefault();
+
+  const confirmChanges = window.confirm(
+    "Are you sure you want to save the changes?"
+  );
+  if (!confirmChanges) {
+    return;
+  }
 
   const newProduct = {
     name: nameInput.value,
@@ -84,16 +90,11 @@ form.addEventListener("submit", function (e) {
           alert("Edit has been saved");
         } else {
           alert("Product saved");
+          form.reset();
           throw new Error(`Status: ${response.status}`);
         }
-
-        nameInput.value = "";
-        descriptionInput.value = "";
-        brandInput.value = "";
-        imageInput.value = "";
-        priceInput.value = "";
       } else {
-        alert("Error while saving");
+        alert("Already saved");
       }
     })
     .catch((err) => {
@@ -102,7 +103,13 @@ form.addEventListener("submit", function (e) {
 });
 
 // delete btn
-document.getElementById("delete").addEventListener("click", function () {
+document.getElementById("delete").addEventListener("click", () => {
+  const confirmChanges = window.confirm(
+    "Are you sure you want to Delete the product?"
+  );
+  if (!confirmChanges) {
+    return;
+  }
   fetch(myUrl + "/" + productId, {
     method: "DELETE",
     headers: {
@@ -122,4 +129,9 @@ document.getElementById("delete").addEventListener("click", function () {
     .catch((err) => {
       console.log(err);
     });
+});
+
+// reset btn
+document.getElementById("reset").addEventListener("click", () => {
+  form.reset();
 });

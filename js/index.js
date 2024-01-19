@@ -52,6 +52,34 @@ const getProduct = () => {
     .then((data) => {
       console.log("DATA", data);
       generateCards(data);
+
+      // search function
+      const filterAndDisplayCards = (searchQuery) => {
+        const filteredProducts = data.filter((product) =>
+          product.name.toLowerCase().includes(searchQuery.toLowerCase())
+        );
+
+        const productsRow = document.getElementById("products-row");
+        productsRow.innerHTML = "";
+
+        generateCards(filteredProducts);
+      };
+
+      const searchForm = document.querySelector('form[role="search"]');
+      const searchInput = searchForm.querySelector('input[type="search"]');
+      const mainArticle = document.getElementById("heroSection");
+
+      searchForm.addEventListener("submit", function (e) {
+        event.preventDefault(e);
+        const searchQuery = searchInput.value.trim();
+
+        if (searchQuery !== "") {
+          filterAndDisplayCards(searchQuery);
+        } else {
+          generateCards(data);
+          mainArticle.classList.add("d-none");
+        }
+      });
     })
     .catch((err) => {
       console.log(err);

@@ -61,23 +61,30 @@ const getProduct = () => {
 
         const productsRow = document.getElementById("products-row");
         productsRow.innerHTML = "";
+        const mainArticle = document.getElementById("heroSection");
+        mainArticle.classList.add("d-none");
+        const homeTittle = document.getElementById("homeTittle");
+        if (filteredProducts.length === 0) {
+          homeTittle.innerHTML = "Search Results: No graphics card found";
+        } else {
+          homeTittle.innerHTML = "Search Results:";
+          generateCards(filteredProducts);
+        }
 
         generateCards(filteredProducts);
       };
 
       const searchForm = document.querySelector('form[role="search"]');
       const searchInput = searchForm.querySelector('input[type="search"]');
-      const mainArticle = document.getElementById("heroSection");
 
       searchForm.addEventListener("submit", function (e) {
-        event.preventDefault(e);
+        e.preventDefault();
         const searchQuery = searchInput.value.trim();
 
         if (searchQuery !== "") {
           filterAndDisplayCards(searchQuery);
         } else {
           generateCards(data);
-          mainArticle.classList.add("d-none");
         }
       });
     })

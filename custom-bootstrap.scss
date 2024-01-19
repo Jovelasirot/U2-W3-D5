@@ -1,0 +1,35 @@
+@import "./scss/functions";
+@import "./scss/variables";
+
+$new-dark: #383838;
+
+
+$new-theme-colors: (
+  'dark': $new-dark,
+  'grigio': #808080,
+  'purple' :#1B174A
+);
+
+
+.anima {
+  transition: transform 0.3s ease;
+
+  &:hover {
+      transform: scale(1.15);
+  }
+}
+
+img{
+  height: 250px;
+  object-fit: contain;
+}
+
+.logo{
+  height: 50px;
+}
+
+$theme-colors: map-merge($theme-colors, $new-theme-colors);
+
+
+@import 'scss/bootstrap.scss';
+
